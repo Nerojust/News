@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:background="#C903202E"
+        android:background="#161615"
         android:orientation="vertical"
         android:padding="10dp"
         android:requiresFadingEdge="vertical">

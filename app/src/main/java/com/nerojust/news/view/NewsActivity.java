@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.nerojust.news.R;
 import com.nerojust.news.adapter.NewsAdapter;
@@ -17,6 +19,7 @@ import com.nerojust.news.presenter.NewsPresenter;
 public class NewsActivity extends AppCompatActivity implements MainContract.NewsViewInterface {
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +31,39 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
+        executeOperation();
+        initViews();
+        /*
+         * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
+         * performs a swipe-to-refresh gesture.
+         */
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        executeOperation();
+
+                    }
+                }
+        );
+    }
+
+    private void executeOperation() {
         NewsPresenter newsPresenter = new NewsPresenter(this);
         newsPresenter.performNewsSearch();
-        initViews();
     }
 
     private void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-       /* recyclerView.setHasFixedSize(true);
+        //layoutManager.setReverseLayout(true);
+        //layoutManager.setStackFromEnd(true);
+        recyclerView.setHasFixedSize(true);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);*/
+        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
 
@@ -57,6 +78,9 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
         NewsAdapter newsAdapter = new NewsAdapter(NewsActivity.this, body);
         recyclerView.setAdapter(newsAdapter);
         progressDialog.dismiss();
+        if (swipeRefreshLayout.isRefreshing()){
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
 }
