@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +23,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private Context context;
@@ -70,7 +68,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM dd,yyyy HH:mm");
+        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM. dd, yyyy @ hh:mm a");
         String finalDtTm = showformatter.format(date);
 
 

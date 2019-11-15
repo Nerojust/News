@@ -45,7 +45,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D8E4DF"
+        android:background="#AD91A5A5"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,101 +53,134 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/newsTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittextstyle"
+                        android:paddingBottom="5dp"
+                        android:text="Title"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/newsAuthor"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="4dp"
+                            android:text="Author:"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/newsPublished"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.65"
+
+                            android:padding="4dp"
+                            android:text="Time:"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <me.biubiubiu.justifytext.library.JustifyTextView
+                        android:id="@+id/newsDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="3dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Description"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="214dp"
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/newsTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittextstyle"
-                    android:paddingBottom="5dp"
-                    android:text="Title"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="true">
 
                     <TextView
-                        android:id="@+id/newsAuthor"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#f6f1fa"
-                        android:padding="4dp"
-                        android:text="Author:"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/newsPublished"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.65"
-
-                        android:padding="4dp"
-                        android:text="Time:"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <me.biubiubiu.justifytext.library.JustifyTextView
-                    android:id="@+id/newsDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="5dp"
-                    android:padding="10dp"
-                    android:text="Description"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-
-                    <Button
                         android:id="@+id/readMoreButton"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/cardview_light_background"
                         android:text="Read more"
-                        android:textColor="#302c2c"
-                        android:textSize="14sp" />
+                        android:textColor="#000000"
+                        android:textSize="17sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="true">
+
 
                     <ImageView
+                        android:id="@+id/share"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:id="@+id/share"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_share_black_24dp" />
-                </LinearLayout>
-            </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

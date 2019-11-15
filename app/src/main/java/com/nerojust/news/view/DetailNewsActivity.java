@@ -1,17 +1,16 @@
 package com.nerojust.news.view;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.nerojust.news.R;
@@ -30,6 +29,7 @@ public class DetailNewsActivity extends AppCompatActivity {
     private String description;
     private String imageUrl;
     private ImageView share;
+    private TextView readMore;
     private Date date;
     private String details;
 
@@ -45,6 +45,7 @@ public class DetailNewsActivity extends AppCompatActivity {
             //finish();
         }
         initViews();
+        initListeners();
 
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
@@ -64,30 +65,15 @@ public class DetailNewsActivity extends AppCompatActivity {
 
     }
 
-    private void bindViews() {
-        titleTextView.setText(title);
-        authorTextView.setText(author);
-
-        descriptionTextView.setText(description);
-
-        @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        try {
-            date = formatter.parse(published);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM dd,yyyy HH:mm");
-        String finalDtTm = showformatter.format(date);
-        timeTextView.setText(finalDtTm);
-    }
-
-    private void initViews() {
-        imageView = findViewById(R.id.image);
-        titleTextView = findViewById(R.id.newsTitle);
-        authorTextView = findViewById(R.id.newsAuthor);
-        timeTextView = findViewById(R.id.newsPublished);
-        descriptionTextView = findViewById(R.id.newsDescription);
-        share = findViewById(R.id.share);
+    private void initListeners() {
+        readMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(details);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +84,39 @@ public class DetailNewsActivity extends AppCompatActivity {
                 startActivity(sendIntent);
             }
         });
+    }
+
+    private void bindViews() {
+        titleTextView.setText(title);
+
+        if (author == null || author == "") {
+            authorTextView.setText("Author: Unknown");
+        } else {
+            authorTextView.setText("Author: " + author);
+        }
+
+        descriptionTextView.setText(description);
+
+        @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        try {
+            date = formatter.parse(published);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM. dd,yyyy @ hh:mm a");
+        String finalDtTm = showformatter.format(date);
+        timeTextView.setText("Time: " + finalDtTm);
+    }
+
+    private void initViews() {
+        imageView = findViewById(R.id.image);
+        titleTextView = findViewById(R.id.newsTitle);
+        authorTextView = findViewById(R.id.newsAuthor);
+        timeTextView = findViewById(R.id.newsPublished);
+        readMore = findViewById(R.id.readMoreButton);
+        descriptionTextView = findViewById(R.id.newsDescription);
+        share = findViewById(R.id.share);
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
