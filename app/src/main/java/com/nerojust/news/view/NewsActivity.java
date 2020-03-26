@@ -71,6 +71,7 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
     public void onNewsResponseError(String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         progressDialog.dismiss();
+        executeOperation();
     }
 
     @Override
