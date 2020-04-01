@@ -56,40 +56,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:cardCornerRadius="5dp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                app:cardCornerRadius="2dp"
                 app:cardElevation="2dp"
+                app:cardMaxElevation="2dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:layout_marginHorizontal="@dimen/_9sdp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/newsTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edittextstyle"
-                        android:paddingBottom="5dp"
                         android:text="Title"
                         android:textAlignment="center"
                         android:textColor="#000000"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/_14ssp"
                         android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_3sdp"
                         android:orientation="horizontal">
 
 
@@ -98,29 +97,25 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="4dp"
                             android:text="Author:"
-                            android:textSize="11sp" />
+                            android:textSize="@dimen/_9ssp" />
 
                         <TextView
                             android:id="@+id/newsPublished"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.65"
-                            android:padding="4dp"
+                            android:layout_weight="0.8"
                             android:text="Time:"
-                            android:textSize="10sp" />
+                            android:textSize="@dimen/_8ssp" />
                     </LinearLayout>
 
-                    <me.biubiubiu.justifytext.library.JustifyTextView
+                    <TextView
                         android:id="@+id/newsDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
                         android:text="Description"
                         android:textColor="#000000"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/_12ssp" />
 
 
                 </LinearLayout>
@@ -131,9 +126,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:layout_marginRight="18dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="@dimen/_7sdp"
                 android:orientation="horizontal">
 
 
@@ -148,7 +142,7 @@
                     android:gravity="center"
                     android:text="Read more"
                     android:textColor="#FFFFFF"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_13ssp" />
 
 
                 <androidx.cardview.widget.CardView

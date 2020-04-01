@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:clickable="false"
     android:contextClickable="true"
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
     android:focusableInTouchMode="false"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:cardPreventCornerOverlap="true"
@@ -39,20 +39,22 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <FrameLayout
+                <LinearLayout
                     android:id="@+id/frameLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left">
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/newsIcon"
-                        android:layout_width="110dp"
-                        android:layout_height="100dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:layout_gravity="center"
                         android:contentDescription="TODO"
                         tools:ignore="ContentDescription" />
-                </FrameLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/newsHolder"
@@ -72,7 +74,7 @@
                         android:text="News Title"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#fff"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/_12ssp"
                         android:textStyle="bold"
                         android:typeface="normal" />
 
@@ -83,7 +85,7 @@
                         android:layout_weight="1"
                         android:text="Author"
                         android:textColor="#fff"
-                        android:textSize="9sp"
+                        android:textSize="@dimen/_8ssp"
                         android:typeface="normal" />
 
                     <me.biubiubiu.justifytext.library.JustifyTextView
@@ -93,7 +95,7 @@
                         android:layout_weight="1"
                         android:text="Year"
                         android:textColor="#fff"
-                        android:textSize="9sp"
+                        android:textSize="@dimen/_8ssp"
                         android:typeface="normal" />
 
 
@@ -112,13 +114,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:maxLines="2"
                     android:ellipsize="end"
+                    android:maxLines="2"
                     android:paddingLeft="10dp"
                     android:requiresFadingEdge="horizontal"
                     android:text="Story: "
                     android:textColor="#020202"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -132,7 +134,7 @@
                 android:text="Click to read more"
                 android:textAlignment="center"
                 android:textColor="#0d0c0c"
-                android:textSize="11sp"
+                android:textSize="@dimen/_9ssp"
                 android:textStyle="italic" />
 
         </LinearLayout>
