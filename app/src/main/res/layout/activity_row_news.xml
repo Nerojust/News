@@ -72,6 +72,7 @@
                         android:layout_weight="1"
                         android:fitsSystemWindows="true"
                         android:text="News Title"
+                        android:fontFamily="@font/rubik_regular"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#fff"
                         android:textSize="@dimen/_12ssp"
@@ -84,6 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Author"
+                        android:fontFamily="@font/rubik_regular"
                         android:textColor="#fff"
                         android:textSize="@dimen/_8ssp"
                         android:typeface="normal" />
@@ -94,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Year"
+                        android:fontFamily="@font/rubik_regular"
                         android:textColor="#fff"
                         android:textSize="@dimen/_8ssp"
                         android:typeface="normal" />
@@ -116,6 +119,7 @@
                     android:layout_marginTop="3dp"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:fontFamily="@font/rubik_regular"
                     android:paddingLeft="10dp"
                     android:requiresFadingEdge="horizontal"
                     android:text="Story: "
@@ -133,6 +137,7 @@
                 android:background="@drawable/edittextstyle"
                 android:text="Click to read more"
                 android:textAlignment="center"
+                android:fontFamily="@font/rubik_regular"
                 android:textColor="#0d0c0c"
                 android:textSize="@dimen/_9ssp"
                 android:textStyle="italic" />
