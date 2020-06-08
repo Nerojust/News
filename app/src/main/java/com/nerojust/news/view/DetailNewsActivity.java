@@ -13,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.nerojust.news.R;
 
 import java.text.DateFormat;
@@ -21,8 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DetailNewsActivity extends AppCompatActivity {
-    ImageView imageView;
-    TextView titleTextView, authorTextView, timeTextView, descriptionTextView;
+    private ImageView imageView;
+    private TextView titleTextView, authorTextView, timeTextView, descriptionTextView;
     private String title;
     private String published;
     private String author;
@@ -45,20 +49,21 @@ public class DetailNewsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //finish();
         }
+        initAds();
         initViews();
         initListeners();
 
         Intent intent = getIntent();
-        title = intent.getStringExtra("title");
-        published = intent.getStringExtra("published");
-        author = intent.getStringExtra("author");
-        description = intent.getStringExtra("description");
-        imageUrl = intent.getStringExtra("image");
-        details = intent.getStringExtra("details");
+        if (intent != null) {
+            title = intent.getStringExtra("title");
+            published = intent.getStringExtra("published");
+            author = intent.getStringExtra("author");
+            description = intent.getStringExtra("description");
+            imageUrl = intent.getStringExtra("image");
+            details = intent.getStringExtra("details");
 
-        bindViews();
-
-        // Toast.makeText(this, title + "\n" + published + "\n" + author + "\n" + description + "\n", Toast.LENGTH_SHORT).show();
+            bindViews();
+        }
         Glide.with(this)
                 .load(imageUrl)
                 .placeholder(R.drawable.load)
@@ -87,10 +92,19 @@ public class DetailNewsActivity extends AppCompatActivity {
         });
     }
 
+    private void initAds() {
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+
+        AdView adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
+
     private void bindViews() {
         titleTextView.setText(title);
 
-        if (author == null || author == "") {
+        if (author == null || author.equalsIgnoreCase("")) {
             authorTextView.setText("Author: Unknown");
         } else {
             authorTextView.setText("Author: " + author);

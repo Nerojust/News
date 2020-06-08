@@ -3,4 +3,15 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="arkandarcs_green">#65A067</color>
+
+    <color name="arkandarcs_light_gray">#D4D4D6</color>
+    <color name="arkandarcs_lighter_gray">#ECECF0</color>
+    <color name="arkandarcs_gray_color">#A39F9F</color>
+    <color name="arkandarcs_white">#ffffff</color>
+    <color name="arkandarcs_red_color">#F11808</color>
+
+    <color name="arkandarcs_black">#000000</color>
+    <color name="arkandarcs_light_red">#F37171</color>
 </resources>

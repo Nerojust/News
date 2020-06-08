@@ -2,4 +2,7 @@
     <string name="app_name">News</string>
     <string name="tab_text_1">Local News</string>
     <string name="tab_text_2">Int News</string>
+    <string name="ad_key2">ca-app-pub-3223394163127231/2951862866</string>
+    <string name="exit">Exit</string>
+    <string name="retry">Retry?</string>
 </resources>
