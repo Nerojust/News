@@ -179,20 +179,22 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
         HashMap<String, Object> firebaseDefaults = new HashMap<>();
         firebaseDefaults.put(LATEST_APP_VERSION_KEY, getCurrentVersionCode());
 
-        mFirebaseRemoteConfig.setDefaults(firebaseDefaults);
-        mFirebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+        mFirebaseRemoteConfig.setDefaultsAsync(firebaseDefaults);
+        mFirebaseRemoteConfig.setConfigSettingsAsync(new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(true)
-                // .setMinimumFetchIntervalInSeconds(3600)
+                .setMinimumFetchIntervalInSeconds(3600)
                 .build());
 
         mFirebaseRemoteConfig.fetch().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                mFirebaseRemoteConfig.activateFetched();
+                mFirebaseRemoteConfig.activate();
                 checkForVersionUpdate();
             } else {
                 Toast.makeText(this, "Error getting update", Toast.LENGTH_SHORT).show();
             }
-        }).addOnFailureListener(e -> Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> {
+            //Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
 
     }
 
@@ -211,7 +213,7 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
                     .setMessage(getResources().getString(R.string.update_message))
                     .setCancelable(false).show();
         } else {
-            Toast.makeText(this, "App is up to date", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "App is up to date", Toast.LENGTH_SHORT).show();
         }
     }
 

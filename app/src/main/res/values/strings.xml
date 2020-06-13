@@ -12,4 +12,7 @@
     <string name="your_app_is_up_to_date">Your app is up to date</string>
     <string name="playstore_link_two">https://play.google.com/store/apps/details?id=</string>
     <string name="playstore_link_one">market://details?id=</string>
+    <string name="latest_news_in_nigeria">Latest news in Nigeria</string>
+    <string name="from_ark_and_arcs">From Ark and Arcs</string>
+    <string name="news_app">News App</string>
 </resources>
