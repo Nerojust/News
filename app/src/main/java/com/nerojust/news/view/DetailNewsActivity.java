@@ -133,7 +133,11 @@ public class DetailNewsActivity extends AppCompatActivity {
         share = findViewById(R.id.share);
 
     }
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
     public boolean onOptionsItemSelected(MenuItem item) {
         // Respond to the action bar's Up/Home button
         if (item.getItemId() == android.R.id.home) {

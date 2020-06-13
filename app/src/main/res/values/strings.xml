@@ -5,4 +5,11 @@
     <string name="ad_key2">ca-app-pub-3223394163127231/2951862866</string>
     <string name="exit">Exit</string>
     <string name="retry">Retry?</string>
+    <string name="do_you_want_to_exit">Do you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="update_message">A new version is available, please update to enjoy new features</string>
+    <string name="your_app_is_up_to_date">Your app is up to date</string>
+    <string name="playstore_link_two">https://play.google.com/store/apps/details?id=</string>
+    <string name="playstore_link_one">market://details?id=</string>
 </resources>

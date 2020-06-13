@@ -1,11 +1,16 @@
 package com.nerojust.news.view;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +23,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.nerojust.news.R;
 import com.nerojust.news.Utils;
 import com.nerojust.news.adapter.NewsAdapter;
@@ -25,10 +32,15 @@ import com.nerojust.news.contract.MainContract;
 import com.nerojust.news.model.NewsResponse;
 import com.nerojust.news.presenter.NewsPresenter;
 
+import java.util.HashMap;
+
 public class NewsActivity extends AppCompatActivity implements MainContract.NewsViewInterface {
+    private static final String LATEST_APP_VERSION_KEY = "latest_app_version";
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +48,7 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
         setContentView(R.layout.activity_news);
 
         initAds();
+        initCheckConfigVersionSettings();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading");
@@ -137,4 +150,78 @@ public class NewsActivity extends AppCompatActivity implements MainContract.News
 
         alertDialog.show();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getResources().getString(R.string.do_you_want_to_exit))
+                .setCancelable(false)
+                .setPositiveButton(getResources().getString(R.string.yes), (dialog, id) -> {
+                    finishAffinity();
+                })
+                .setNegativeButton(getResources().getString(R.string.no), (dialog, id) -> dialog.cancel());
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
+    /**
+     * This checks if the there is a current version available on play store and show a dialog
+     */
+    private void initCheckConfigVersionSettings() {
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        HashMap<String, Object> firebaseDefaults = new HashMap<>();
+        firebaseDefaults.put(LATEST_APP_VERSION_KEY, getCurrentVersionCode());
+
+        mFirebaseRemoteConfig.setDefaults(firebaseDefaults);
+        mFirebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(true)
+                // .setMinimumFetchIntervalInSeconds(3600)
+                .build());
+
+        mFirebaseRemoteConfig.fetch().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                mFirebaseRemoteConfig.activateFetched();
+                checkForVersionUpdate();
+            } else {
+                Toast.makeText(this, "Error getting update", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(e -> Toast.makeText(this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show());
+
+    }
+
+    private void checkForVersionUpdate() {
+        int retrievedVersionCodeFromFirebase = (int) mFirebaseRemoteConfig.getDouble((LATEST_APP_VERSION_KEY));
+        if (getCurrentVersionCode() < retrievedVersionCodeFromFirebase) {
+            new AlertDialog.Builder(this).setPositiveButton("UPDATE", (dialog, which) -> {
+
+                final String appPackageName = getPackageName(); // package name of the app
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.playstore_link_one) + appPackageName)));
+                } catch (ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.playstore_link_two) + appPackageName)));
+                }
+            }).setTitle("Update Application").setNegativeButton("NO, THANKS", (dialog, which) -> dialog.dismiss())
+                    .setMessage(getResources().getString(R.string.update_message))
+                    .setCancelable(false).show();
+        } else {
+            Toast.makeText(this, "App is up to date", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getCurrentVersionCode() {
+        try {
+            return getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }

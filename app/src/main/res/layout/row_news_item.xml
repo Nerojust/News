@@ -61,7 +61,7 @@
                     android:text="News Title"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#fff"
-                    android:textSize="@dimen/_11ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     android:typeface="normal" />
 
@@ -73,7 +73,7 @@
                     android:fontFamily="@font/rubik_regular"
                     android:text="Author"
                     android:textColor="#fff"
-                    android:textSize="@dimen/_8ssp"
+                    android:textSize="@dimen/_9ssp"
                     android:typeface="normal" />
 
                 <me.biubiubiu.justifytext.library.JustifyTextView
@@ -84,7 +84,7 @@
                     android:fontFamily="@font/rubik_regular"
                     android:text="Year"
                     android:textColor="#fff"
-                    android:textSize="@dimen/_8ssp"
+                    android:textSize="@dimen/_9ssp"
                     android:typeface="normal" />
 
 
@@ -110,7 +110,7 @@
                 android:requiresFadingEdge="horizontal"
                 android:text="Story: "
                 android:textColor="#020202"
-                android:textSize="@dimen/_9ssp"
+                android:textSize="@dimen/_10ssp"
                 android:textStyle="bold" />
 
         </LinearLayout>
