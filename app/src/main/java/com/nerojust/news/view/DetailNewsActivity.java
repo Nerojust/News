@@ -15,7 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.nerojust.news.R;
 
@@ -42,7 +41,7 @@ public class DetailNewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_news);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -110,7 +109,11 @@ public class DetailNewsActivity extends AppCompatActivity {
             authorTextView.setText("Author: " + author);
         }
 
-        descriptionTextView.setText(description);
+        if (description == null || description.equalsIgnoreCase("")) {
+            descriptionTextView.setText("Story: No Story yet");
+        } else {
+            descriptionTextView.setText(description);
+        }
 
         @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
@@ -118,7 +121,7 @@ public class DetailNewsActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM. dd,yyyy @ hh:mm a");
+        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM. dd,yyyy ; hh:mm a");
         String finalDtTm = showformatter.format(date);
         timeTextView.setText("Time: " + finalDtTm);
     }
@@ -131,13 +134,14 @@ public class DetailNewsActivity extends AppCompatActivity {
         readMore = findViewById(R.id.readMoreButton);
         descriptionTextView = findViewById(R.id.newsDescription);
         share = findViewById(R.id.share);
-
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         // Respond to the action bar's Up/Home button
         if (item.getItemId() == android.R.id.home) {

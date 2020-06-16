@@ -58,7 +58,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             }
         });
 
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_scale_animation));
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
 
 
         holder.newsTitle.setText(newsResponseList.getArticles().get(position).getTitle());
@@ -68,11 +68,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM. dd, yyyy @ hh:mm a");
+        @SuppressLint("SimpleDateFormat") DateFormat showformatter = new SimpleDateFormat("MMM. dd, yyyy ; hh:mm a");
         String finalDtTm = showformatter.format(date);
 
 
         holder.newsPublish.setText("Time : " + finalDtTm);
+        if (newsResponseList.getArticles().get(position).getDescription() == null ||
+                newsResponseList.getArticles().get(position).getDescription() == "") {
+            holder.newsDescription.setText("No detail yet");
+        } else {
+            holder.newsDescription.setText("Story: " + newsResponseList.getArticles().get(position).getDescription());
+        }
+
+
         if (newsResponseList.getArticles().get(position).getAuthor() == null ||
                 newsResponseList.getArticles().get(position).getAuthor() == "") {
             holder.newsAuthor.setText("Author: Unknown");
@@ -80,8 +88,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             holder.newsAuthor.setText("Author: " + newsResponseList.getArticles().get(position).getAuthor());
         }
 
-
-        holder.newsDescription.setText("Story: " + newsResponseList.getArticles().get(position).getDescription());
         Glide.with(context)
                 .load(newsResponseList.getArticles().get(position).getUrlToImage())
                 .placeholder(R.drawable.load)
@@ -94,7 +100,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return newsResponseList.getArticles().size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         final LinearLayout container;
         ImageView imageView;
         TextView newsTitle;
@@ -102,7 +108,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView newsPublish;
         TextView newsDescription;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.container);
             imageView = itemView.findViewById(R.id.newsIcon);

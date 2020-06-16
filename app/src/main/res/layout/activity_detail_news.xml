@@ -200,6 +200,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3223394163127231/1755482642" />
+            app:adUnitId="@string/admob_key3" />
     </LinearLayout>
 </LinearLayout>

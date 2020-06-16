@@ -13,8 +13,9 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3223394163127231/7226149794" />
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        app:adUnitId="@string/admob_key1" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -35,5 +36,5 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3223394163127231/7226149794" />
+        app:adUnitId="@string/admob_key2" />
 </LinearLayout>
