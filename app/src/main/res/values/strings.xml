@@ -12,10 +12,10 @@
     <string name="your_app_is_up_to_date">Your app is up to date</string>
     <string name="playstore_link_two">https://play.google.com/store/apps/details?id=</string>
     <string name="playstore_link_one">market://details?id=</string>
-    <string name="latest_news_in_nigeria">Latest news in Nigeria</string>
-    <string name="news_app">News App</string>
+    <string name="latest_news_in_nigeria">Latest news in around the world</string>
+
     <string name="admob_key1">ca-app-pub-3223394163127231/1755482642</string>
     <string name="admob_key2">ca-app-pub-3223394163127231/7226149794</string>
     <string name="admob_key3">ca-app-pub-3223394163127231/4469638258</string>
-    <string name="from_n_ark_and_arcs">FROM \n ARK AND ARCS</string>
+    <string name="from_n_ark_and_arcs">ARK &amp; ARCS</string>
 </resources>
