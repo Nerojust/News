@@ -13,7 +13,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">#832720</item>
-        <item name="colorPrimaryDark">#42100C</item>
+        <item name="colorPrimaryDark">@color/card_bg</item>
         <item name="colorAccent">#832720</item>
     </style>
 

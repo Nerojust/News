@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/_6sdp"
         android:layout_marginVertical="@dimen/_6sdp"
-        android:background="#130103"
+        android:background="@color/card_bg"
         android:orientation="vertical">
 
         <LinearLayout
